@@ -14,7 +14,7 @@ def black_jack():
         dealer = []
         player = []
 
-        deal_card(dealer, 2, cards)
+        deal_card(dealer, 1, cards)
         deal_card(player, 2, cards)
 
         dealer_sum = calculate_score(dealer)
@@ -25,6 +25,10 @@ def black_jack():
 
             if player_sum > 21:
                 print(F"BUST! You are over 21 with {player_sum} - 😭 Dealer Wins 😭")
+                break
+
+            if player_sum == 21 and len(player) == 2 and len(dealer) == 1:
+                print(F"BLACKJACK! Player wins with {player_sum}")
                 break
 
             player_turn = input("Hit(H) or Stand(S)?:\n").lower()
@@ -59,7 +63,7 @@ def black_jack():
                 player_sum = calculate_score(player)
             else:
                 clear_console()
-                print("Please provide a valid input")
+                print("---- Please provide a valid input ----")
 
         reset = input("Would you like to play again? - Type Y for yes or anything else to exit:\n").lower()
         if reset != "y":

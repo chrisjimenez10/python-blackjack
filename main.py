@@ -21,14 +21,20 @@ def black_jack():
         player_sum = calculate_score(player)
 
         while True:
-            print(F"{logo}\nDealer First Card: {dealer[0]}\nPlayer Hand: {player} Score: {player_sum}")
+            print(F"{logo}\n🂡 Dealer First Card: {dealer[0]}\n🂡 Player Hand: {player} Score: {player_sum}")
 
             if player_sum > 21:
-                print(F"BUST! You are over 21 with {player_sum} - 😭 Dealer Wins 😭")
-                break
+                if 11 in player:
+                    player.remove(11)
+                    player.append(1)
+                    player_sum = calculate_score(player)
+                    print(F"Replaced card 11 with 1\n🂡 New Player Hand: {player} Score: {player_sum}")
+                else:
+                    print(F"BUST! You are over 21 with {player_sum} - 😭 Dealer Wins 😭")
+                    break
 
             if player_sum == 21 and len(player) == 2 and len(dealer) == 1:
-                print(F"BLACKJACK! Player wins with {player_sum}")
+                print(F"BLACKJACK! 😎 Player wins with {player_sum} 😎")
                 break
 
             player_turn = input("Hit(H) or Stand(S)?:\n").lower()

@@ -45,9 +45,7 @@ def black_jack():
         player_sum = calculate_score(player)
 
         while True:
-            print(logo)
-            print(F"Dealer First Card: {dealer[0]}")
-            print(F"Player Hand: {player} Score: {player_sum}")
+            print(F"{logo}\nDealer First Card: {dealer[0]}\nPlayer Hand: {player} Score: {player_sum}")
 
             if player_sum > 21:
                 print(F"BUST! You are over 21 with {player_sum} - 😭 Dealer Wins 😭")
@@ -60,7 +58,7 @@ def black_jack():
                     deal_card(dealer, 1)
                     dealer_sum = calculate_score(dealer)
 
-                if player_sum == 21:
+                if player_sum == 21 and dealer_sum != 21:
                     message(dealer, dealer_sum, player, player_sum)
                     print(F"😎 Player Wins! 😎")
                 elif player_sum > dealer_sum and dealer_sum != 21 and player_sum < 21:

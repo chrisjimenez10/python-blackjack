@@ -43,7 +43,14 @@ def black_jack():
                 while dealer_sum < 17:
                     deal_card(dealer, 1, cards)
                     dealer_sum = calculate_score(dealer)
-
+                    print(F"DEALER HAND PROGRESSION: {dealer}")
+                    #Here, we ensure that should dealer_sum be greater than 21 during the while loop AND 11 is appended to the hand from the ABOVE execution --> Then we remove 11 and replace with 1 (NOTE: Important to re-calculate to change dealer_sum and continue wihtin while loop)
+                    if dealer_sum > 21 and 11 in dealer:
+                        dealer.remove(11)
+                        dealer.append(1)
+                        dealer_sum = calculate_score(dealer)
+                        print(F"Replaced card 11 with 1\n🂡 New Dealer Hand: {dealer} Score: {dealer_sum}")
+                        
                 if player_sum == 21 and dealer_sum != 21:
                     message(dealer, dealer_sum, player, player_sum)
                     print(F"😎 Player Wins! 😎")

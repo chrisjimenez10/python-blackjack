@@ -22,4 +22,4 @@ def calculate_score(hand):
 
 #Message Function
 def message(user1, score1, user2, score2):
-    print(F"Dealer Hand: {user1} - Score: {score1}\nPlayer Hand: {user2} - Score: {score2}")
+    print(F"🂡 Dealer Hand: {user1} - Score: {score1}\n🂡 Player Hand: {user2} - Score: {score2}")

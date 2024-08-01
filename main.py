@@ -1,4 +1,4 @@
-import random
+from tools import deal_card, calculate_score, message
 from clear import clear_console
 from art import logo
 
@@ -7,30 +7,6 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 dealer = []
 player = []
 
-#Deal ONE Random Card Function
-def deal_card(user, times):
-    """The deal_card() function generates one or two random cards, which is determined by the second parameter"""
-    if times == 1:
-        for n in range(0, 1):
-            card = random.choice(cards)
-            user.append(card)
-    elif times == 2:
-        for n in range(0, 2):
-            card = random.choice(cards)
-            user.append(card)
-    return
-
-#Calculate Score Function
-def calculate_score(hand):
-    score = 0
-    for card in hand:
-        score += card
-    return score
-
-#Message Function
-def message(user1, score1, user2, score2):
-    print(F"Dealer Hand: {user1} - Score: {score1}\nPlayer Hand: {user2} - Score: {score2}")
-
 def black_jack():
     """The black_jack() function initiates the game program. It has a reset functionality after a round of play is completed if user input is Y/y"""
     while True:
@@ -38,8 +14,8 @@ def black_jack():
         dealer = []
         player = []
 
-        deal_card(dealer, 2)
-        deal_card(player, 2)
+        deal_card(dealer, 2, cards)
+        deal_card(player, 2, cards)
 
         dealer_sum = calculate_score(dealer)
         player_sum = calculate_score(player)
@@ -55,7 +31,7 @@ def black_jack():
             if player_turn == "s":
                 #While loop to ensure that Dealer "HITS" and receives a card while their total score is below 17 (Blackjack rules: Dealer MUST hit as many times as needed if their score is below 17, if it's 17 or over then Dealer will "STAND")
                 while dealer_sum < 17:
-                    deal_card(dealer, 1)
+                    deal_card(dealer, 1, cards)
                     dealer_sum = calculate_score(dealer)
 
                 if player_sum == 21 and dealer_sum != 21:
@@ -79,7 +55,7 @@ def black_jack():
                 break
             elif player_turn == "h":
                 clear_console()
-                deal_card(player, 1)
+                deal_card(player, 1, cards)
                 player_sum = calculate_score(player)
             else:
                 clear_console()

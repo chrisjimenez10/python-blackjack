@@ -23,8 +23,8 @@ def deal_card(user, times):
 #Calculate Score Function
 def calculate_score(hand):
     score = 0
-    for c in hand:
-        score += c
+    for card in hand:
+        score += card
     return score
 
 #Message Function
@@ -91,3 +91,6 @@ def black_jack():
             return
 
 black_jack()
+
+#TODO - Add the feature where if score is GREATER than 21, but there is an 11 in the player's hand -> Covert it to a 1 and CONTINUE to draw
+##Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
